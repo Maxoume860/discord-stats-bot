@@ -217,4 +217,16 @@ client.once('ready', async () => {
     setInterval(updateStats, 10 * 60 * 1000);
 });
 
+// Debug des variables d'environnement
+console.log('🔍 Variables d\'environnement:');
+console.log('DISCORD_TOKEN:', process.env.DISCORD_TOKEN ? 'Défini (' + process.env.DISCORD_TOKEN.length + ' caractères)' : 'NON DÉFINI');
+console.log('GUILD_ID:', process.env.GUILD_ID || 'NON DÉFINI');
+console.log('TWITCH_CLIENT_ID:', process.env.TWITCH_CLIENT_ID || 'NON DÉFINI');
+
+if (!process.env.DISCORD_TOKEN) {
+    console.error('❌ ERREUR: DISCORD_TOKEN n\'est pas défini dans les variables d\'environnement!');
+    console.error('Vérifiez l\'onglet Variables sur Railway.');
+    process.exit(1);
+}
+
 client.login(process.env.DISCORD_TOKEN);
